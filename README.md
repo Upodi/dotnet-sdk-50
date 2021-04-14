@@ -15,7 +15,8 @@ Upodi SDK for .NET Core 2.1 provided by NuGet. [Download from here](https://www.
 
 ### Initialization
 ```
-UpodiService upodi = new UpodiService("{api key}");
+UpodiClient upodi = new UpodiClient(
+                new Credentials({secret api key}));
 var listOfCustomer = upodi.Customers.List();
 ```
 
@@ -27,68 +28,3 @@ Upodi SDK provides properties of entities subject to the Upodi API as documented
 * **CreatedBy** and **ModifiedBy**. *Guid*. These fields are always set by Upodi.
 
 The full list of non-mutable fields can be found here [https://docs.upodi.com/v2.0/reference](https://docs.upodi.com/v2.0/reference).
-
-### 10 line sign up
-10 lines and you have signed up a customer, assigned a plan and started a subscription. This example uses Stripe.
-```
-// setup service
-UpodiService upodi = new UpodiService("enter key here");
-
-Guid newCustomerId = upodi.Customers.Create("70225683", "Upodi ApS", "DKK");
-Guid productPlanId = Guid.Parse("- enter Guid of product plan here - "); // guid id of the product plan
-
-upodi.SignUp.SignUp(new SignUpRequest {
-      Customer = new Customer { ID = newCustomerId },
-      CardToken = new CardToken { PaymentGateway = "stripe", Token = "- enter strike customer token cus_XXX -" },
-      StartDate = DateTime.UtcNow,
-      ProductPlan = new ProductPlan {  ID = productPlanId }
-});
-```
-
-### Working with Customers
-List all customers. Options to limited list all or paged results. See limited lists below.
-```
-var customers = upodi.Customers.List(all: true);
-```
-
-Get a customer. If not found, null is returned.
-```
-var customer = upodi.Customers.Get(Guid.Parse("{guid of customer}"));
-if (customer != null)
-  ...
-```
-
-Create a new customer. Requires accountnumber, fullname and currencycode.
-```
-var newId = upodi.Customers.Create("acocuntnumber", "fullname", "USD");
-```
-
-### Working with Subscriptions
-List all subscriptions. Options to limited list all or paged results. See limited lists below.
-```
-var subscriptions = upodi.Subscriptions.List(all: true);
-```
-
-Create a new subscription. Requires the customer and product plan id.
-```
-var newId = upodi.Subscriptions.Create(customerId, productPlanId, DateTime.UtcNow);
-```
-
-Subscriptions enable various actions.
-```
-var result = upodi.Subscriptions.Activate(subscriptionId);
-var result = upodi.Subscriptions.Cancel(subscriptionId);
-var result = upodi.Subscriptions.Expire(subscriptionId);
-var result = upodi.Subscriptions.Hold(subscriptionId);
-var result = upodi.Subscriptions.Resume(subscriptionId);
-```
-
-List active charges (parameter true).
-```
-var charges = upodi.Subscriptions.ListCharges(subscriptionId, true);
-```
-
-Update amount of a subscription charge.
-```
-var result = upodi.Subscriptions.SetAmount(subscriptionId, productPlanChargeId, 302.34);
-```
