@@ -1,7 +1,7 @@
-# Upodi SDK 5.0 for Microsoft .NET Core Framework [![NuGet](https://img.shields.io/nuget/v/Upodi.SDK.Preview.svg)](https://www.nuget.org/packages/Upodi.SDK.Preview/)
+# Upodi SDK 5.0 for Microsoft .NET Core Framework [![NuGet](https://img.shields.io/nuget/v/Upodi.SDK.5.svg)](https://www.nuget.org/packages/Upodi.SDK.5/)
 Upodi SDK Core for C# and .net developers enables easy to use integration and programming core applications.
 
-Upodi SDK for .NET Core 2.1 provided by NuGet. [Download from here](https://www.nuget.org/packages/Upodi.SDK.Preview/) or using your favorite NuGet package manager.
+Upodi SDK for .NET Core 2.1 provided by NuGet. [Download from here](https://www.nuget.org/packages/Upodi.SDK.5/) or using your favorite NuGet package manager.
 
 ## Overview
 * [NuGet package](https://www.nuget.org/packages/Upodi.Sdk/)
@@ -28,3 +28,6 @@ Upodi SDK provides properties of entities subject to the Upodi API as documented
 * **CreatedBy** and **ModifiedBy**. *Guid*. These fields are always set by Upodi.
 
 The full list of non-mutable fields can be found here [https://docs.upodi.com/v2.0/reference](https://docs.upodi.com/v2.0/reference).
+
+## Preview edition
+Latest and experimental features are subject to the preview version. [![NuGet](https://img.shields.io/nuget/v/Upodi.SDK.Preview.svg)](https://www.nuget.org/packages/Upodi.SDK.Preview/)
